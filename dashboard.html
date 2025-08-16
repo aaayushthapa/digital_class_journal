@@ -1,0 +1,366 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Recent Activities</h3>
+                <a href="#" class="btn btn-outline">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>New Journal Entry</h4>
+                            <p>You added a new journal entry for your Science project</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>New Feedback</h4>
+                            <p>Mr. Smith provided feedback on your Math assignment</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Group Update</h4>
+                            <p>Sarah joined your History project group</p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>Upcoming Assignments</h3>
+            </div>
+            <div class="card-body">
+                <div class="assignment-item">
+                    <h4>Math Homework</h4>
+                    <p>Due: Tomorrow</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+                
+                <div class="assignment-item">
+                    <h4>Science Project</h4>
+                    <p>Due: Next Monday</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 30%"></div>
+                    </div>
+                </div>
+                
+                <div class="assignment-item">
+                    <h4>History Essay</h4>
+                    <p>Due: In 2 weeks</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 10%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Current Projects</h3>
+                <a href="{{ url_for('projects') }}" class="btn btn-outline">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>Science Fair</h4>
+                            <span class="badge-status badge-success">Active</span>
+                        </div>
+                        <p>Team project for the annual science fair</p>
+                        <div class="project-members">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Member" class="avatar">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Member" class="avatar">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Member" class="avatar">
+                            <span class="more-members">+2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>History Presentation</h4>
+                            <span class="badge-status badge-warning">Pending</span>
+                        </div>
+                        <p>Group presentation on World War II</p>
+                        <div class="project-members">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Member" class="avatar">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Member" class="avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Quick Actions</h3>
+            </div>
+            <div class="card-body">
+                <div class="quick-actions">
+                    <a href="{{ url_for('logs') }}" class="action-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Journal Entry</span>
+                    </a>
+                    
+                    <a href="{{ url_for('assignments') }}" class="action-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                    
+                    <a href="{{ url_for('projects') }}" class="action-item">
+                        <i class="fas fa-users"></i>
+                        <span>Create Project Group</span>
+                    </a>
+                    
+                    <a href="{{ url_for('reports') }}" class="action-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Generate Report</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+    padding: 0 15px;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 15px;
+}
+
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding: 0 15px;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f1f3f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.activity-content h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.activity-content p {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.activity-time {
+    font-size: 12px;
+    color: #adb5bd;
+}
+
+.assignment-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.assignment-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.assignment-item h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.assignment-item p {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.project-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.project-header h4 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.project-card p {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.project-members {
+    display: flex;
+    align-items: center;
+}
+
+.project-members .avatar {
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.more-members {
+    font-size: 12px;
+    color: #6c757d;
+    margin-left: 5px;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: all 0.3s;
+}
+
+.action-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+}
+
+.action-item i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.action-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .col-md-8, .col-md-6, .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-actions {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+{% endblock %}

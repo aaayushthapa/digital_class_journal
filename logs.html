@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Journal Logs{% endblock %}
+
+{% block header %}Journal Logs{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>My Journal Entries</h3>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#createLogModal">
+            <i class="fas fa-plus"></i> New Entry
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="logs-container">
+            <div class="log-item">
+                <div class="log-header">
+                    <h4>Science Project - Week 1</h4>
+                    <span class="log-date">May 15, 2023</span>
+                </div>
+                <div class="log-project">
+                    <i class="fas fa-users"></i> Science Fair
+                </div>
+                <div class="log-content">
+                    <p>This week we started our science project on renewable energy sources. We divided the team into three groups: research, design, and presentation. My role is in the research group where I'm focusing on solar energy solutions.</p>
+                    <div class="log-media">
+                        <img src="https://via.placeholder.com/150" alt="Project Image" class="media-thumbnail">
+                        <img src="https://via.placeholder.com/150" alt="Project Image" class="media-thumbnail">
+                    </div>
+                </div>
+                <div class="log-actions">
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            </div>
+            
+            <div class="log-item">
+                <div class="log-header">
+                    <h4>History Presentation Research</h4>
+                    <span class="log-date">May 8, 2023</span>
+                </div>
+                <div class="log-project">
+                    <i class="fas fa-users"></i> History Presentation
+                </div>
+                <div class="log-content">
+                    <p>Today I researched the causes of World War II. Found some interesting primary sources from the British archives. Need to coordinate with Sarah who's working on the European theater aspects.</p>
+                    <div class="log-media">
+                        <img src="https://via.placeholder.com/150" alt="Project Image" class="media-thumbnail">
+                    </div>
+                </div>
+                <div class="log-actions">
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            </div>
+            
+            <div class="log-item">
+                <div class="log-header">
+                    <h4>Math Problem Solving</h4>
+                    <span class="log-date">May 1, 2023</span>
+                </div>
+                <div class="log-project">
+                    <i class="fas fa-user"></i> Individual
+                </div>
+                <div class="log-content">
+                    <p>Worked on calculus problems today. Struggled with optimization problems but finally understood the concept after reviewing the textbook examples. Need to practice more derivatives.</p>
+                </div>
+                <div class="log-actions">
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Log Modal -->
+<div class="modal" id="createLogModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">New Journal Entry</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="logForm">
+                    <div class="form-group">
+                        <label for="logTitle">Title</label>
+                        <input type="text" class="form-control" id="logTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="logProject">Project</label>
+                        <select class="form-control" id="logProject">
+                            <option value="">Individual</option>
+                            <option>Science Fair</option>
+                            <option>History Presentation</option>
+                            <option>Math Research</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="logContent">Content</label>
+                        <textarea class="form-control" id="logContent" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="logMedia">Upload Media</label>
+                        <input type="file" class="form-control" id="logMedia" multiple>
+                        <small class="form-text text-muted">You can upload images, documents, or short videos</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="createLogBtn">Save Entry</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.logs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.log-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.log-header h4 {
+    font-size: 18px;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.log-date {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.log-project {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.log-project i {
+    margin-right: 5px;
+}
+
+.log-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.log-media {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.media-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.media-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.log-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal functionality for log creation
+    const logModal = document.getElementById('createLogModal');
+    const openLogModalBtn = document.querySelector('[data-target="#createLogModal"]');
+    const closeLogModalBtn = logModal.querySelector('.close');
+    const createLogBtn = document.getElementById('createLogBtn');
+    
+    openLogModalBtn.addEventListener('click', function() {
+        logModal.style.display = 'block';
+    });
+    
+    closeLogModalBtn.addEventListener('click', function() {
+        logModal.style.display = 'none';
+    });
+    
+    createLogBtn.addEventListener('click', function() {
+        // Here you would typically submit the form via AJAX
+        alert('Journal entry created successfully!');
+        logModal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === logModal) {
+            logModal.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock %}

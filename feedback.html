@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block header %}Feedback{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Received Feedback</h3>
+            </div>
+            <div class="card-body">
+                <div class="feedback-list">
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Teacher" class="avatar">
+                            <div class="feedback-info">
+                                <h4>Mr. Johnson</h4>
+                                <span class="feedback-date">May 16, 2023</span>
+                                <span class="feedback-grade">Grade: A</span>
+                            </div>
+                        </div>
+                        <div class="feedback-content">
+                            <h5>Science Project Proposal</h5>
+                            <p>Your project proposal is very well structured and demonstrates a clear understanding of the scientific method. The hypothesis is testable and the methodology is sound. I suggest expanding the literature review section to include more recent studies.</p>
+                        </div>
+                        <div class="feedback-actions">
+                            <button class="btn btn-sm btn-outline"><i class="fas fa-reply"></i> Reply</button>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <img src="{{ url_for('static', filename='images/default-avatar.png') }}" alt="Teacher" class="avatar">
+                            <div class="feedback-info">
+                                <h4>Ms. Davis</h4>
+                                <span class="feedback-date">May 10, 2023</span>
+                                <span class="feedback-grade">Grade: B+</span>
+                            </div>
+                        </div>
+                        <div class="feedback-content">
+                            <h5>History Essay Draft</h5>
+                            <p>Your analysis of the causes of World War II is comprehensive, but you need to work on your citations. Several claims are not properly supported by sources. Also, the conclusion could be stronger by tying back to your thesis more explicitly.</p>
+                            <div class="feedback-media">
+                                <a href="#" class="media-link"><i class="fas fa-file-pdf"></i> Annotated Essay</a>
+                            </div>
+                        </div>
+                        <div class="feedback-actions">
+                            <button class="btn btn-sm btn-outline"><i class="fas fa-reply"></i> Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>Give Feedback</h3>
+            </div>
+            <div class="card-body">
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="feedbackRecipient">Recipient</label>
+                        <select class="form-control" id="feedbackRecipient" required>
+                            <option value="">Select recipient</option>
+                            <option>Mr. Johnson (Science)</option>
+                            <option>Ms. Davis (History)</option>
+                            <option>Mr. Smith (Math)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackSubject">Subject</label>
+                        <input type="text" class="form-control" id="feedbackSubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackContent">Feedback</label>
+                        <textarea class="form-control" id="feedbackContent" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackAttachment">Attachment</label>
+                        <input type="file" class="form-control" id="feedbackAttachment">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Feedback</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedback-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.feedback-header .avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.feedback-info {
+    flex: 1;
+}
+
+.feedback-info h4 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    color: var(--primary-color);
+}
+
+.feedback-date, .feedback-grade {
+    font-size: 13px;
+    color: #6c757d;
+    margin-right: 10px;
+}
+
+.feedback-content h5 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.feedback-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.feedback-media {
+    margin-top: 10px;
+}
+
+.media-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.media-link i {
+    margin-right: 5px;
+}
+
+.media-link:hover {
+    text-decoration: underline;
+}
+
+.feedback-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    .col-md-8, .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const feedbackForm = document.getElementById('feedbackForm');
+    
+    feedbackForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically submit the form via AJAX
+        alert('Feedback submitted successfully!');
+        feedbackForm.reset();
+    });
+});
+</script>
+{% endblock %}
